@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1055079428715",
+    "project_id": "voyager-app-45762",
+    "storage_bucket": "voyager-app-45762.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055079428715:android:5ad2a7ec71f445635d372e",
+        "android_client_info": {
+          "package_name": "com.example.voyager_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0l4JnZxN7_CM4-DZReIMuAeEyEe6TLsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
