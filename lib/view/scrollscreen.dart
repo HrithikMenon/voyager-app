@@ -424,8 +424,8 @@ class WhenWid extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
+                    children: [ 
+                      const Text(//gtu
                         'Tips',
                         style: TextStyle(
                             // GoogleFonts.montserrat(
