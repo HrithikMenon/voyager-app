@@ -17,40 +17,38 @@ class _AddYourGoalState extends State<AddYourGoal>
   TabController? _tabController;
   String headingText = 'Add your goal';
 
-   void handleTabChange(){
-    if(_tabController!.indexIsChanging){
-       if(_tabController!.index == 0){
+  void handleTabChange() {
+    if (_tabController!.indexIsChanging) {
+      if (_tabController!.index == 0) {
         setState(() {
           headingText = 'Add your goal';
         });
       }
-      if(_tabController!.index == 1){
+      if (_tabController!.index == 1) {
         setState(() {
-        headingText = 'Add a deadline';
-      });
+          headingText = 'Add a deadline';
+        });
       }
-      if(_tabController!.index == 2){
+      if (_tabController!.index == 2) {
         setState(() {
           headingText = 'Your plan';
         });
       }
-       if(_tabController!.index == 3){
+      if (_tabController!.index == 3) {
         setState(() {
           headingText = 'Why do this';
         });
       }
-      
     }
-    }
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
-    
+
     _tabController!.addListener(handleTabChange);
-   
   }
 
   @override
@@ -67,14 +65,16 @@ class _AddYourGoalState extends State<AddYourGoal>
         appBar: AppBar(
           toolbarHeight: 100,
           automaticallyImplyLeading: false,
-          title:  Padding(
+          title: Padding(
             padding: const EdgeInsets.only(top: 30, left: 20, bottom: 12),
             child: Text(
               headingText,
-             // 'Add your goal',
+              // 'Add your goal',
               style: const TextStyle(
-              // GoogleFonts.montserrat(
-                  fontSize: 20, fontWeight: FontWeight.w900, color: Colors.black),
+                  // GoogleFonts.montserrat(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.black),
             ),
           ),
           backgroundColor: Colors.transparent,
@@ -83,7 +83,8 @@ class _AddYourGoalState extends State<AddYourGoal>
               padding: const EdgeInsets.only(right: 30, left: 30, bottom: 10),
               labelStyle:
                   const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
-              unselectedLabelStyle: const TextStyle(color: Colors.white10, fontWeight: FontWeight.w500),
+              unselectedLabelStyle: const TextStyle(
+                  color: Colors.white10, fontWeight: FontWeight.w500),
               unselectedLabelColor: Colors.black.withOpacity(0.5),
               labelColor: Colors.blue,
               indicator: const BoxDecoration(
@@ -91,7 +92,9 @@ class _AddYourGoalState extends State<AddYourGoal>
               ),
               controller: _tabController,
               tabs: const [
-                Tab(text: 'WHAT'),
+                Tab(
+                  text: 'WHAT',
+                ),
                 Tab(
                   text: 'WHEN',
                 ),
@@ -104,11 +107,15 @@ class _AddYourGoalState extends State<AddYourGoal>
               ]),
         ),
         backgroundColor: backgroundColor,
-        body: TabBarView(controller: _tabController, children:  [
-          WhatPage(), 
-           WhenPage(), 
-           HowPage(), 
-           const WhyPage()
+        body: TabBarView(controller: _tabController, children: [
+          WhatPage(tc: _tabController!),
+          WhenPage(tc: _tabController),
+          HowPage(
+            tc: _tabController!,
+          ),
+          WhyPage(
+            tc: _tabController,
+          )
         ]),
       ),
     );

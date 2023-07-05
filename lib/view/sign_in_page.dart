@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voyager_app/constants/constants.dart';
 import 'package:voyager_app/controllers/authentication_services.dart';
 import 'package:voyager_app/goals/add_your_goal.dart';
+import 'package:voyager_app/view/sampl.dart';
 import 'package:voyager_app/widgets/signin_text_field.dart';
 
 class SignInPage extends StatefulWidget {
@@ -104,12 +105,17 @@ class _SignInPageState extends State<SignInPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgot password?',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 12,
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w600),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Sampl()));
+                      },
+                      child: Text(
+                        'Forgot password?',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12,
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ],
                 ),

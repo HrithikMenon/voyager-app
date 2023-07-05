@@ -3,7 +3,9 @@ import 'package:intl/intl.dart';
 import 'package:voyager_app/constants/constants.dart';
 
 class WhenPage extends StatefulWidget {
-  const WhenPage({super.key});
+   WhenPage({super.key, required this.tc});
+
+  TabController? tc ;
 
   @override
   State<WhenPage> createState() => _WhenPageState();
@@ -12,9 +14,39 @@ class WhenPage extends StatefulWidget {
 class _WhenPageState extends State<WhenPage> {
   TextEditingController deadlineController = TextEditingController();
 
+    tcfun(){
+   listToAddToHive.add({
+    'When' : deadlineController.text
+   });
+   widget.tc!.animateTo(2);
+
+  }
+
   String formattedDate = '';
 
    textFieldOnTapFuncion(BuildContext context)async{
+  //    void _showIOS_DatePicker(ctx) {
+  //   showCupertinoModalPopup(
+  //       context: ctx,
+  //       builder: (_) => Container(
+  //             height: 190,
+  //             color: const Color.fromARGB(255, 255, 255, 255),
+  //             child: Column(
+  //               children: [
+  //                 SizedBox(
+  //                   height: 180,
+  //                   child: CupertinoDatePicker(
+  //                       initialDateTime: DateTime.now(),
+  //                       onDateTimeChanged: (val) {
+  //                         setState(() {
+  //                           deadlineController.text = val.toString();
+  //                         });
+  //                       }),
+  //                 ),
+  //               ],
+  //             ),
+  //           ));
+  // }
     DateTime? pickedDate = await showDatePicker(
 
                       context: context,
@@ -66,6 +98,7 @@ class _WhenPageState extends State<WhenPage> {
         ), onTap: (){
           textFieldOnTapFuncion(context);
         },
+        onSubmitted: (val)=> tcfun(),
       ), 
     ),
                 const SizedBox(

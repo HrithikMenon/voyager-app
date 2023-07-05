@@ -4,14 +4,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:voyager_app/goal_screen1.dart';
+import 'package:voyager_app/models/hive_models/goal_model.dart';
 import 'package:voyager_app/view/signup_page.dart';
 
 
-void main() async{
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized(); 
+  await Hive.initFlutter();
+  if(!Hive.isAdapterRegistered(GoalModelAdapter().typeId)){
+    Hive.registerAdapter(GoalModelAdapter());
+  }
   await Firebase.initializeApp();
   await GetStorage.init();
+  Hive.openBox<GoalModel>('goalBox');
+
   runApp(const MyApp());
 }
 

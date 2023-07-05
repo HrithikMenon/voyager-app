@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:voyager_app/constants/constants.dart';
-import 'package:voyager_app/widgets/common_text_field.dart';
 
 class HowPage extends StatelessWidget {
-   HowPage({super.key});
+   HowPage({super.key, required this.tc});
+
+   TabController tc;
 
   TextEditingController planController = TextEditingController();
+
+
+    tcfun(){
+   listToAddToHive.add({
+    'How' : planController.text
+   });
+   tc.animateTo(3);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +26,32 @@ class HowPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 25, left: 25),
             child: Column(
               children: [
-                CommonTextField(goalController: planController,),
+                 Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.white, width: 2)),
+      width: MediaQuery.of(context).size.width,
+      child: TextField(
+        controller: planController,
+        decoration: const InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
+          border: InputBorder.none,
+          hintText: 'Enter here',
+          hintStyle:
+              TextStyle(color: Color.fromARGB(255, 168, 166, 166)),
+          icon: Padding(
+            padding: EdgeInsets.only(left: 10.0),
+            child: Text(
+              '🎯',
+            ),
+          ),
+        ), 
+        onSubmitted: (val)=> tcfun(),
+      ), 
+    ),
+               // CommonTextField(goalController: planController, onSubmitFunction: (){}),
                 const SizedBox(
                   height: 20,
                 ),
@@ -29,7 +64,7 @@ class HowPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Column(
+                      child:  Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CommonTextField extends StatelessWidget {
-   const CommonTextField({
+    CommonTextField({
     super.key,
     required this.goalController,
+    required this.onSubmitFunction
    
   });
 
   final TextEditingController goalController;
+  void onSubmitFunction;
 
 
   @override
@@ -33,7 +35,8 @@ class CommonTextField extends StatelessWidget {
               '🎯',
             ),
           ),
-        ), 
+        ), onSubmitted: 
+        (val)=> onSubmitFunction,
       ),
     );
   }

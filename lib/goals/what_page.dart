@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:voyager_app/constants/constants.dart';
-import 'package:voyager_app/widgets/common_text_field.dart';
+import 'package:voyager_app/goals/a_temp_file_to_display_hivevalues.dart';
+import 'package:voyager_app/view/scrollscreen.dart';
 
 class WhatPage extends StatelessWidget {
-  WhatPage({super.key});
+  WhatPage({super.key, required this.tc});
 
   TextEditingController goalController = TextEditingController();
+  TabController tc;
+  // var box = Hive.box('myBox');
+
+
+
+  
+   
+  tcfun(){
+    listToAddToHive.add({
+      'What': goalController.text
+    });
+   //box.put('name', 'abin john');
+//  final box = Hive.box<Map<String,String>>('myBox');
+//  box.put('1', {'what' : goalController.text});
+//   log('hwg: ${box.get('1')!['name']}');
+   tc.animateTo(1);
+
+  }
+
+  
 
 
   @override
@@ -17,7 +38,35 @@ class WhatPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 25, left: 25),
             child: Column(
               children: [
-                CommonTextField(goalController: goalController, ),
+                Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.white, width: 2)),
+      width: MediaQuery.of(context).size.width,
+      child: TextField(
+        controller: goalController,
+        decoration: const InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
+          border: InputBorder.none,
+          hintText: 'Enter here',
+          hintStyle:
+              TextStyle(color: Color.fromARGB(255, 168, 166, 166)),
+          icon: Padding(
+            padding: EdgeInsets.only(left: 10.0),
+            child: Text(
+              '🎯',
+            ),
+          ),
+        ), onSubmitted: 
+        (val){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> ScrollScreen()));
+          tcfun();
+        } 
+      ),
+    ),
+              //  CommonTextField(goalController: goalController,onSubmitFunction: ()=>tcfun ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -42,7 +91,7 @@ class WhatPage extends StatelessWidget {
                                 color: Colors.black),
                           ),
                           sh20,
-                          Row(
+                              Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
                               // Image.asset(
@@ -65,7 +114,7 @@ class WhatPage extends StatelessWidget {
                           sh20,
                           sh10,
 
-                          Row(
+                              Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
                             Text('💡', style: TextStyle(height: 1.5),),
@@ -112,7 +161,9 @@ class WhatPage extends StatelessWidget {
                               ))
                               //Text('Need more help? Read this.', style: TextStyle(color: Color.fromARGB(255, 145, 139, 139),height: 1.6, fontWeight: FontWeight.w500),)
                             ],
-                          ),
+                          ),MaterialButton(onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> const ATempFile()));
+                          }, child: const Text('OK'),)
 
                           //const Text('Be specific here. Vague destinations are hard to reach. Examples of vague goals: Get fit, Get rich. Better goals would be: Lose 5kg, Make my first \$1000 selling t-shirts online.', maxLines: 5, overflow: TextOverflow.ellipsis, style: TextStyle(color: Color.fromARGB(255, 145, 139, 139),height: 1.6, fontWeight: FontWeight.w500),),
                         ],

@@ -1,6 +1,6 @@
 
-import 'package:voyager_app/add_deadline.dart';
 import 'package:flutter/material.dart';
+import 'package:voyager_app/add_deadline.dart';
 
 
 
@@ -18,6 +18,7 @@ class _AddGoalState extends State<AddGoal> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+   // _tabController.animationDuration = Duration.zero;
   }
 
   @override
@@ -256,6 +257,9 @@ class _AddGoalState extends State<AddGoal> with TickerProviderStateMixin {
       );
   }
 }
+
+
+
 
 
 
