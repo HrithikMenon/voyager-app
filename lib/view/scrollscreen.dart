@@ -16,7 +16,6 @@ class ScrollScreen extends StatelessWidget {
   TextStyle cc = TextStyle(
       color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.w500);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,73 +36,73 @@ class ScrollScreen extends StatelessWidget {
         ),
         backgroundColor: backgroundColor,
         body: GetBuilder<MainScreenController>(
-          init: MainScreenController(),
-          builder: (controller) {
-            controller.onInit();
-            return ListView(
-              controller: sc,
-              children: [
-                sh20, //
-                sh20,
-                Padding(
-                  padding: const EdgeInsets.only(right: 10.0, left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          mainScreenController.switchHeadingText('what');
-                          sc.animateTo(
-                            3000, // The position you want to scroll to
-                            duration: const Duration(
-                                milliseconds: 5000), // Duration of the animation
-                            curve: Curves
-                                .easeInOut, // The easing curve for the animation
-                          );
-                        },
-                        child: Obx(() => Text('WHAT',
-                            style: mainScreenController.whatStyle.value)),
-                      ),
-                      GestureDetector(
+            init: MainScreenController(),
+            builder: (controller) {
+              controller.onInit();
+              return ListView(
+                controller: sc,
+                children: [
+                  sh20, //
+                  sh20,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0, left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
                           onTap: () {
-                            mainScreenController.switchHeadingText('when');
+                            mainScreenController.switchHeadingText('what');
+                            sc.animateTo(
+                              3000, // The position you want to scroll to
+                              duration: const Duration(
+                                  milliseconds:
+                                      5000), // Duration of the animation
+                              curve: Curves
+                                  .easeInOut, // The easing curve for the animation
+                            );
                           },
-                          child: Obx(() => Text('WHEN',
-                              style: mainScreenController.whenStyle.value))),
-                      GestureDetector(
-                        onTap: () {
-                          mainScreenController.switchHeadingText('how');
-                        },
-                        child: Obx(() => Text(
-                              'HOW',
-                              style: mainScreenController.howStyle.value,
-                            )),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          mainScreenController.switchHeadingText('why');
-                          mainScreenController.scrollToElement(context);
-                        },
-                        child: Obx(() => Text('WHY',
-                            style: mainScreenController.whyStyle.value)),
-                      )
-                    ],
+                          child: Obx(() => Text('WHAT',
+                              style: mainScreenController.whatStyle.value)),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              mainScreenController.switchHeadingText('when');
+                            },
+                            child: Obx(() => Text('WHEN',
+                                style: mainScreenController.whenStyle.value))),
+                        GestureDetector(
+                          onTap: () {
+                            mainScreenController.switchHeadingText('how');
+                          },
+                          child: Obx(() => Text(
+                                'HOW',
+                                style: mainScreenController.howStyle.value,
+                              )),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            mainScreenController.switchHeadingText('why');
+                            mainScreenController.scrollToElement(context);
+                          },
+                          child: Obx(() => Text('WHY',
+                              style: mainScreenController.whyStyle.value)),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                sh20,
-                WhatWid(goalController: goalController, scrollController: sc),
-                const SizedBox(
-                  height: 20,
-                ),
-                WhenWid(deadlineController: deadlineController),
-                sh20,
-                HowWid(planController: planController),
-                sh20,
-                WhyWid(whyDoThisController: whyDoThisController)
-              ],
-            );
-          }
-        )
+                  sh20,
+                  WhatWid(goalController: goalController, scrollController: sc),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  WhenWid(deadlineController: deadlineController),
+                  sh20,
+                  HowWid(planController: planController),
+                  sh20,
+                  WhyWid(whyDoThisController: whyDoThisController)
+                ],
+              );
+            })
 //       body: Center(
 //         child: SingleChildScrollView(
 //           controller: sc,
@@ -238,11 +237,7 @@ class WhyWid extends StatelessWidget {
                     ],
                   ),
                 )),
-            MaterialButton(
-                onPressed: () {
-                  //log(goalBox!.getAt(8).what.toString());
-                },
-                child: const Text('OK'))
+            sh20
           ],
         ),
       ),
@@ -424,8 +419,9 @@ class WhenWid extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [ 
-                      const Text(//gtu
+                    children: [
+                      const Text(
+                        //gtu
                         'Tips',
                         style: TextStyle(
                             // GoogleFonts.montserrat(
@@ -632,12 +628,6 @@ class WhatWid extends StatelessWidget {
                           //Text('Need more help? Read this.', style: TextStyle(color: Color.fromARGB(255, 145, 139, 139),height: 1.6, fontWeight: FontWeight.w500),)
                         ],
                       ),
-                      MaterialButton(
-                        onPressed: () {
-                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ATempFile()));
-                        },
-                        child: const Text('OK'),
-                      )
 
                       //const Text('Be specific here. Vague destinations are hard to reach. Examples of vague goals: Get fit, Get rich. Better goals would be: Lose 5kg, Make my first \$1000 selling t-shirts online.', maxLines: 5, overflow: TextOverflow.ellipsis, style: TextStyle(color: Color.fromARGB(255, 145, 139, 139),height: 1.6, fontWeight: FontWeight.w500),),
                     ],
