@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voyager_app/constants/constants.dart';
 import 'package:voyager_app/controllers/mainscreen_controller.dart';
+import 'package:voyager_app/view/goal_screen_with_emoji.dart';
 
 class ScrollScreen extends StatelessWidget {
   ScrollScreen({super.key});
@@ -18,113 +21,130 @@ class ScrollScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.only(left: 10, top: 20),
-            child: Obx(() => Text(
-                  mainScreenController.headingText.value,
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900),
-                )),
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 20),
+              child: Obx(() => Text(
+                    mainScreenController.headingText.value,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900),
+                  )),
+            ),
+            actions: [
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const GoalScreenWithEmoji()));
+                },
+                child: const Text('d', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),))
+            ],
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            automaticallyImplyLeading: false,
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
-        backgroundColor: backgroundColor,
-        body: GetBuilder<MainScreenController>(
-            init: MainScreenController(),
-            builder: (controller) {
-              controller.onInit();
-              return ListView(
-                controller: sc,
-                children: [
-                  sh20, //
-                  sh20,
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0, left: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            mainScreenController.switchHeadingText('what');
-                            sc.animateTo(
-                              3000, // The position you want to scroll to
-                              duration: const Duration(
-                                  milliseconds:
-                                      5000), // Duration of the animation
-                              curve: Curves
-                                  .easeInOut, // The easing curve for the animation
-                            );
-                          },
-                          child: Obx(() => Text('WHAT',
-                              style: mainScreenController.whatStyle.value)),
-                        ),
-                        GestureDetector(
+          backgroundColor: backgroundColor,
+          body: GetBuilder<MainScreenController>(
+              init: MainScreenController(),
+              builder: (controller) {
+                controller.onInit();
+                return ListView(
+                  controller: sc,
+                  children: [
+                    sh20, //
+                    sh20,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20.0, left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
                             onTap: () {
-                              mainScreenController.switchHeadingText('when');
+                              mainScreenController.switchHeadingText('what');
+                              sc.animateTo(
+                                3000, // The position you want to scroll to
+                                duration: const Duration(
+                                    milliseconds:
+                                        5000), // Duration of the animation
+                                curve: Curves
+                                    .easeInOut, // The easing curve for the animation
+                              );
                             },
-                            child: Obx(() => Text('WHEN',
-                                style: mainScreenController.whenStyle.value))),
-                        GestureDetector(
-                          onTap: () {
-                            mainScreenController.switchHeadingText('how');
-                          },
-                          child: Obx(() => Text(
-                                'HOW',
-                                style: mainScreenController.howStyle.value,
-                              )),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            mainScreenController.switchHeadingText('why');
-                            mainScreenController.scrollToElement(context);
-                          },
-                          child: Obx(() => Text('WHY',
-                              style: mainScreenController.whyStyle.value)),
-                        )
-                      ],
+                            child: Obx(() => Text('WHAT',
+                                style: mainScreenController.whatStyle.value)),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                mainScreenController.switchHeadingText('when');
+                              },
+                              child: Obx(() => Text('WHEN',
+                                  style: mainScreenController.whenStyle.value))),
+                          GestureDetector(
+                            onTap: () {//
+                              mainScreenController.switchHeadingText('how');
+                               sc.animateTo(
+                                840, // The position you want to scroll to
+                                duration: const Duration(
+                                    milliseconds:
+                                        5000), // Duration of the animation
+                                curve: Curves
+                                    .easeInOut, // The easing curve for the animation
+                              );
+                            },
+                            child: Obx(() => Text(
+                                  'HOW',
+                                  style: mainScreenController.howStyle.value,
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              mainScreenController.switchHeadingText('why');
+                              mainScreenController.scrollToElement(context);
+                            },
+                            child: Obx(() => Text('WHY',
+                                style: mainScreenController.whyStyle.value)),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  sh20,
-                  WhatWid(goalController: goalController, scrollController: sc),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  WhenWid(deadlineController: deadlineController),
-                  sh20,
-                  HowWid(planController: planController),
-                  sh20,
-                  WhyWid(whyDoThisController: whyDoThisController)
-                ],
-              );
-            })
-//       body: Center(
-//         child: SingleChildScrollView(
-//           controller: sc,
-//           child: Column(
-//             children: [
-//               const Text('Part 1'),
-//               MaterialButton(
-//   onPressed: () {
-//     sc.animateTo(
-//       3000, // The position you want to scroll to
-//       duration: const Duration(milliseconds: 500), // Duration of the animation
-//       curve: Curves.easeInOut, // The easing curve for the animation
-//     );
-//   },
-//   child: const Text('Scroll to Section'),
-
-// ),const SizedBox(height: 2000,), const Text('Part 2'),
-//             ],
-//           ),
-//         ),
-//       ),
-        );
+                    sh20,
+                    WhatWid(goalController: goalController, scrollController: sc),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    WhenWid(deadlineController: deadlineController),
+                    sh20,
+                    HowWid(planController: planController),
+                    sh20,
+                    WhyWid(whyDoThisController: whyDoThisController)
+                  ],
+                );
+              })
+    //       body: Center(
+    //         child: SingleChildScrollView(
+    //           controller: sc,
+    //           child: Column(
+    //             children: [
+    //               const Text('Part 1'),
+    //               MaterialButton(
+    //   onPressed: () {
+    //     sc.animateTo(
+    //       3000, // The position you want to scroll to
+    //       duration: const Duration(milliseconds: 500), // Duration of the animation
+    //       curve: Curves.easeInOut, // The easing curve for the animation
+    //     );
+    //   },
+    //   child: const Text('Scroll to Section'),
+    
+    // ),const SizedBox(height: 2000,), const Text('Part 2'),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+          ),
+    );
   }
 }
 
@@ -165,7 +185,10 @@ class WhyWid extends StatelessWidget {
                     ),
                   ),
                 ),
-                //  onSubmitted: (val) => tcfun(),
+                  onSubmitted: (val){
+                    listToAddToHive.add({'why' : val});
+                    log(listToAddToHive.toString());
+                  },
               ),
             ),
             //CommonTextField(goalController: whyDoThisController,onSubmitFunction: (){}),
@@ -282,7 +305,9 @@ class HowWid extends StatelessWidget {
                     ),
                   ),
                 ),
-                //  onSubmitted: (val)=> tcfun(),
+                onSubmitted: (val){
+                  listToAddToHive.add({'how' : val});
+                },
               ),
             ),
             // CommonTextField(goalController: planController, onSubmitFunction: (){}),
@@ -402,7 +427,9 @@ class WhenWid extends StatelessWidget {
                 onTap: () {
                   //textFieldOnTapFuncion(context);
                 },
-                //  onSubmitted: (val)=> tcfun(),
+                  onSubmitted: (val){
+                    listToAddToHive.add({'when' : val});
+                  },
               ),
             ),
             const SizedBox(
@@ -489,6 +516,7 @@ class WhatWid extends StatelessWidget {
 
   final TextEditingController goalController;
   ScrollController scrollController;
+  MainScreenController mainScreenController = Get.put(MainScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -520,10 +548,12 @@ class WhatWid extends StatelessWidget {
                     ),
                   ),
                   onSubmitted: (val) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ScrollScreen()));
+                  mainScreenController.handleSubmit(val);
+                  listToAddToHive.add({'what' : val});
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => ScrollScreen()));
                     // tcfun();
                   }),
             ),
