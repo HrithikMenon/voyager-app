@@ -37,7 +37,7 @@ class ScrollScreen extends StatelessWidget {
             actions: [
               GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const GoalScreenWithEmoji()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  GoalScreenWithEmoji()));
                 },
                 child: const Text('d', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),))
             ],
@@ -63,14 +63,7 @@ class ScrollScreen extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               mainScreenController.switchHeadingText('what');
-                              sc.animateTo(
-                                3000, // The position you want to scroll to
-                                duration: const Duration(
-                                    milliseconds:
-                                        5000), // Duration of the animation
-                                curve: Curves
-                                    .easeInOut, // The easing curve for the animation
-                              );
+                            
                             },
                             child: Obx(() => Text('WHAT',
                                 style: mainScreenController.whatStyle.value)),
@@ -78,6 +71,14 @@ class ScrollScreen extends StatelessWidget {
                           GestureDetector(
                               onTap: () {
                                 mainScreenController.switchHeadingText('when');
+                                  sc.animateTo(
+                                450, // The position you want to scroll to
+                                duration: const Duration(
+                                    milliseconds:
+                                        3000), // Duration of the animation
+                                curve: Curves
+                                    .easeInOut, // The easing curve for the animation
+                              );
                               },
                               child: Obx(() => Text('WHEN',
                                   style: mainScreenController.whenStyle.value))),
@@ -101,7 +102,15 @@ class ScrollScreen extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               mainScreenController.switchHeadingText('why');
-                              mainScreenController.scrollToElement(context);
+                              //mainScreenController.scrollToElement(context);
+                               sc.animateTo(
+                                1230, // The position you want to scroll to
+                                duration: const Duration(
+                                    milliseconds:
+                                        5000), // Duration of the animation
+                                curve: Curves
+                                    .easeInOut, // The easing curve for the animation
+                              );
                             },
                             child: Obx(() => Text('WHY',
                                 style: mainScreenController.whyStyle.value)),
@@ -149,12 +158,13 @@ class ScrollScreen extends StatelessWidget {
 }
 
 class WhyWid extends StatelessWidget {
-  const WhyWid({
+   WhyWid({
     super.key,
     required this.whyDoThisController,
   });
 
   final TextEditingController whyDoThisController;
+  MainScreenController mainScreenController = MainScreenController();
 
   @override
   Widget build(BuildContext context) {
@@ -188,6 +198,8 @@ class WhyWid extends StatelessWidget {
                   onSubmitted: (val){
                     listToAddToHive.add({'why' : val});
                     log(listToAddToHive.toString());
+                    mainScreenController.addValuesToHive(listToAddToHive);
+                    
                   },
               ),
             ),

@@ -19,7 +19,7 @@ class MainScreenController extends GetxController {
   String why = '';
   Box? goalBox;
 
-  List<Map<String, String>> hiveList = [];
+  //List<Map<String, String>> hiveList = [];
 
   RxString headingText = 'Add your goal'.obs;
   Rx<TextStyle> selectedSectionStyle =
@@ -122,7 +122,7 @@ class MainScreenController extends GetxController {
 
   //hive function need to cross check again compulsorily
 
-  addValuesToHive() async {
+  addValuesToHive(hiveList) async {
     goalBox = Hive.box<GoalModel>('goalBox');
     for (var data in hiveList) {
       data.forEach((key, value) {
@@ -147,12 +147,12 @@ class MainScreenController extends GetxController {
     log('h:$k');
   }
 
-  tcfun() {
-    hiveList.add({'Why': whyController.value.text});
-    //  widget.tc!.animateTo(0);
-    log(hiveList.toString());
-    addValuesToHive();
-  }
+  // tcfun() {
+  //   hiveList.add({'Why': whyController.value.text});
+  //   //  widget.tc!.animateTo(0);
+  //   log(hiveList.toString());
+  //   addValuesToHive();
+  // }
 
   void printval(val) {
     log(val);
