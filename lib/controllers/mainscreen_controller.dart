@@ -21,6 +21,8 @@ class MainScreenController extends GetxController {
 
   //List<Map<String, String>> hiveList = [];
 
+  Map<String, String> mapValues = {};
+
   RxString headingText = 'Add your goal'.obs;
   Rx<TextStyle> selectedSectionStyle =
       const TextStyle(color: Colors.blue, fontWeight: FontWeight.w900).obs;
@@ -121,6 +123,21 @@ class MainScreenController extends GetxController {
   }
 
   //hive function need to cross check again compulsorily
+
+
+  addValuesToHiveFromMap(){
+    mapValues.forEach((key, value) {
+        if (key == 'What') {
+          what = value;
+        } else if (key == 'When') {
+          when = value;
+        } else if (key == 'How') {
+          how = value;
+        } else if (key == 'Why') {
+          why = value;
+        }
+    });
+  }
 
   addValuesToHive(hiveList) async {
     goalBox = Hive.box<GoalModel>('goalBox');

@@ -3,20 +3,19 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:voyager_app/constants/constants.dart';
 
 class GoalScreenWithEmoji extends StatelessWidget {
-   GoalScreenWithEmoji({super.key});
- 
- Box? goalBox;
- List< String>actionsList = [];
- TextEditingController actionController = TextEditingController();
+  GoalScreenWithEmoji({super.key});
 
+  Box? goalBox;
+  List<String> actionsList = [];
+  TextEditingController actionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-       return SafeArea(
-         child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: backgroundColor,
-             body: SafeArea(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: backgroundColor,
+        body: SafeArea(
             child:
                 // Column(
                 // children: [
@@ -62,7 +61,7 @@ class GoalScreenWithEmoji extends StatelessWidget {
                                     topRight: Radius.circular(10))),
                             child: const Center(
                               child: Text(
-                               //goalBox!.getAt(0)['what'].toString(),
+                                //goalBox!.getAt(0)['what'].toString(),
                                 "Increase affiliate\nrevenue of Homesly",
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -89,7 +88,8 @@ class GoalScreenWithEmoji extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Container(
                                 height: 5,
                                 width: 140,
@@ -149,33 +149,31 @@ class GoalScreenWithEmoji extends StatelessWidget {
                             const EdgeInsets.only(left: 20, right: 30, top: 10),
                         child: TextFormField(
                           controller: actionController,
-                          onFieldSubmitted: (val){
+                          onFieldSubmitted: (val) {
                             actionsList.add(val);
                           },
                           decoration: const InputDecoration(
                             icon: Icon(Icons.add),
                             hintText: 'Add an action, entry or habit',
                           ),
-                        ), 
-                       
-                      ),  ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: actionsList.length,
-                        itemBuilder: (builder, context){
-                          return const Text('data');
-                      })
+                        ),
+                      ),
+                      ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: actionsList.length,
+                          itemBuilder: (builder, context) {
+                            return const Text('data');
+                          })
                     ],
                   ),
                 )
               ],
             ),
           ),
-             )
-           
-            ),
-           ),
-       );
+        )),
+      ),
+    );
   }
 }
     // return SafeArea(
