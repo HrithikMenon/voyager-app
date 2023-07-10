@@ -196,6 +196,9 @@ class WhyWid extends StatelessWidget {
                   ),
                 ),
                   onSubmitted: (val){
+                    mapValue.addAll({
+                      'why' : val
+                    });
                     listToAddToHive.add({'why' : val});
                     log(listToAddToHive.toString());
                     mainScreenController.addValuesToHive(listToAddToHive);
@@ -318,6 +321,9 @@ class HowWid extends StatelessWidget {
                   ),
                 ),
                 onSubmitted: (val){
+                   mapValue.addAll({
+                      'how' : val
+                    });
                   listToAddToHive.add({'how' : val});
                 },
               ),
@@ -440,6 +446,9 @@ class WhenWid extends StatelessWidget {
                   //textFieldOnTapFuncion(context);
                 },
                   onSubmitted: (val){
+                     mapValue.addAll({
+                      'when' : val
+                    });
                     listToAddToHive.add({'when' : val});
                   },
               ),
@@ -561,6 +570,9 @@ class WhatWid extends StatelessWidget {
                   ),
                   onSubmitted: (val) {
                   mainScreenController.handleSubmit(val);
+                   mapValue.addAll({
+                      'what' : val
+                    });
                   listToAddToHive.add({'what' : val});
                     // Navigator.push(
                     //     context,

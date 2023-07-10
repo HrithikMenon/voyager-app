@@ -26,5 +26,6 @@ void showSnackkBar(){
   }
 
   List<Map<String, String>> listToAddToHive = [];
+  Map<String, String> mapValue = {};
 
 

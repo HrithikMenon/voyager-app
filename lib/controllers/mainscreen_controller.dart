@@ -125,7 +125,7 @@ class MainScreenController extends GetxController {
   //hive function need to cross check again compulsorily
 
 
-  addValuesToHiveFromMap(){
+  addValuesToHiveFromMap() async {
     mapValues.forEach((key, value) {
         if (key == 'What') {
           what = value;
@@ -136,7 +136,32 @@ class MainScreenController extends GetxController {
         } else if (key == 'Why') {
           why = value;
         }
-    });
+    }); 
+
+    GoalModel model = GoalModel(what: what, when: when, how: how, why: why);
+    log('model :${model.what}');
+
+    await goalBox!.add(model);
+
+    final k = goalBox!.getAt(0);
+
+    log('h:$k');
+  }
+
+  // tcfun() {
+  //   hiveList.add({'Why': whyController.value.text});
+  //   //  widget.tc!.animateTo(0);
+  //   log(hiveList.toString());
+  //   addValuesToHive();
+  // }
+
+  void printval(val) {
+    log(val);
+  } 
+   void handleSubmit(String value) {
+    // Your logic when the text field is submitted
+    log('Submitted: $value');
+  
   }
 
   addValuesToHive(hiveList) async {
@@ -171,12 +196,12 @@ class MainScreenController extends GetxController {
   //   addValuesToHive();
   // }
 
-  void printval(val) {
-    log(val);
-  } 
-   void handleSubmit(String value) {
-    // Your logic when the text field is submitted
-    log('Submitted: $value');
-  }
+  // void printval(val) {
+  //   log(val);
+  // } 
+  //  void handleSubmit(String value) {
+  //   // Your logic when the text field is submitted
+  //   log('Submitted: $value');
+  // }
 
 }
