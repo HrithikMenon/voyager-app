@@ -21,7 +21,7 @@ class MainScreenController extends GetxController {
 
   //List<Map<String, String>> hiveList = [];
 
-  Map<String, String> mapValues = {};
+//  Map<String, String> mapValues = {};
 
   RxString headingText = 'Add your goal'.obs;
   Rx<TextStyle> selectedSectionStyle =
@@ -125,7 +125,7 @@ class MainScreenController extends GetxController {
   //hive function need to cross check again compulsorily
 
 
-  addValuesToHiveFromMap() async {
+  addValuesToHiveFromMap(mapValues) async {
     mapValues.forEach((key, value) {
         if (key == 'What') {
           what = value;
@@ -146,6 +146,10 @@ class MainScreenController extends GetxController {
     final k = goalBox!.getAt(0);
 
     log('h:$k');
+
+    log(k.val('What'));
+
+
   }
 
   // tcfun() {

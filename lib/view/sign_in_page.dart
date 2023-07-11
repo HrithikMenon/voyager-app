@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voyager_app/constants/constants.dart';
 import 'package:voyager_app/controllers/authentication_services.dart';
-import 'package:voyager_app/goals/add_your_goal.dart';
-import 'package:voyager_app/view/sampl.dart';
+import 'package:voyager_app/view/paused_goals.dart';
+import 'package:voyager_app/view/scrollscreen.dart';
 import 'package:voyager_app/widgets/signin_text_field.dart';
 
 class SignInPage extends StatefulWidget {
@@ -107,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Sampl()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const PausedGoals()));
                       },
                       child: Text(
                         'Forgot password?',
@@ -131,7 +131,7 @@ class _SignInPageState extends State<SignInPage> {
                         await userSignInFunction(); 
                         //  if(signInSuccessOrNot==true){
                         //   log('Sign IN SuCCESS');
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddYourGoal(),));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  ScrollScreen(),));
                         
                         // } else{
                         //  log('SIgn IN ERROR');

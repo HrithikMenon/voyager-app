@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voyager_app/constants/constants.dart';
@@ -197,10 +195,12 @@ class WhyWid extends StatelessWidget {
                 ),
                   onSubmitted: (val){
                     mapValue.addAll({
-                      'why' : val
+                      'Why' : val
                     });
+                    mainScreenController.addValuesToHiveFromMap(mapValue);
                     listToAddToHive.add({'why' : val});
-                    log(listToAddToHive.toString());
+                  
+                //    log(listToAddToHive.toString());
                     mainScreenController.addValuesToHive(listToAddToHive);
                     
                   },
@@ -322,7 +322,7 @@ class HowWid extends StatelessWidget {
                 ),
                 onSubmitted: (val){
                    mapValue.addAll({
-                      'how' : val
+                      'How' : val
                     });
                   listToAddToHive.add({'how' : val});
                 },
@@ -447,7 +447,7 @@ class WhenWid extends StatelessWidget {
                 },
                   onSubmitted: (val){
                      mapValue.addAll({
-                      'when' : val
+                      'When' : val
                     });
                     listToAddToHive.add({'when' : val});
                   },
@@ -571,7 +571,7 @@ class WhatWid extends StatelessWidget {
                   onSubmitted: (val) {
                   mainScreenController.handleSubmit(val);
                    mapValue.addAll({
-                      'what' : val
+                      'What' : val
                     });
                   listToAddToHive.add({'what' : val});
                     // Navigator.push(

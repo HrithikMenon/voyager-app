@@ -1,6 +1,5 @@
 //import 'dart:js';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -17,36 +16,36 @@ class _HomeOneState extends State<HomeOne> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static  List<Widget> _widgetOptions = <Widget>[
+  static  final List<Widget> _widgetOptions = <Widget>[
     Column(
       children: [
         Container(
-          padding: EdgeInsets.only(left: 10,top: 10),
+          padding: const EdgeInsets.only(left: 10,top: 10),
           alignment: Alignment.centerLeft,
-  child: Text("",style: TextStyle(
+  child: const Text("",style: TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 10,
   ),)),
-        Text(
+        const Text(
           'Index 0: Home',
           style: optionStyle,
         ),
       ],
     ),
-    Text(
+    const Text(
       'Index 1: Business',
       style: optionStyle,
     ),
-    Text(
+    const Text(
       'Index 2: School',
       style: optionStyle,
     ),
-    Text(
+    const Text(
       'Index 3: School',
       style: optionStyle,
     ),
-    Text(
+    const Text(
       'Index 4: School',
       style: optionStyle,
     ),
@@ -75,7 +74,7 @@ class _HomeOneState extends State<HomeOne> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items:  <BottomNavigationBarItem>[
+        items:  const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home,),
             label: 'Home',
