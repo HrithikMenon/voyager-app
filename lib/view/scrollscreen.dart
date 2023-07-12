@@ -201,7 +201,7 @@ class WhyWid extends StatelessWidget {
                     listToAddToHive.add({'why' : val});
                   
                 //    log(listToAddToHive.toString());
-                    mainScreenController.addValuesToHive(listToAddToHive);
+                  //  mainScreenController.addValuesToHive(listToAddToHive);
                     
                   },
               ),

@@ -17,7 +17,7 @@ class MainScreenController extends GetxController {
   String when = '';
   String how = '';
   String why = '';
-  Box? goalBox;
+  Box<GoalModel>? goalBox = Hive.box<GoalModel>('goalBox');
 
   //List<Map<String, String>> hiveList = [];
 
@@ -147,7 +147,7 @@ class MainScreenController extends GetxController {
 
     log('h:$k');
 
-    log(k.val('What'));
+
 
 
   }
