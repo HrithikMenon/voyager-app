@@ -19,18 +19,20 @@ class _PausedGoalsState extends State<PausedGoals> {
   }
 
   Future<void> gg() async {
-    bbox = await Hive.openBox<GoalModel>('myBox');
-    myData = bbox!.get(0);
+    bbox = await Hive.openBox<GoalModel>('goalBox');
+    myData = bbox!.getAt(0);
     setState(() {}); // Trigger a rebuild after retrieving the data
   }
 
+
+ 
   @override
   Widget build(BuildContext context) {
     if (myData == null) {
       // Handle the case when data is not yet retrieved
       return const Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: Text('No Goals Added Yet')
         ),
       );
     } else {

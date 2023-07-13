@@ -34,10 +34,19 @@ class ScrollScreen extends StatelessWidget {
             ),
             actions: [
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  GoalScreenWithEmoji()));
-                },
-                child: const Text('d', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),))
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GoalScreenWithEmoji()));
+                  },
+                  child: const Text(
+                    'd',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ))
             ],
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -61,7 +70,6 @@ class ScrollScreen extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               mainScreenController.switchHeadingText('what');
-                            
                             },
                             child: Obx(() => Text('WHAT',
                                 style: mainScreenController.whatStyle.value)),
@@ -69,21 +77,23 @@ class ScrollScreen extends StatelessWidget {
                           GestureDetector(
                               onTap: () {
                                 mainScreenController.switchHeadingText('when');
-                                  sc.animateTo(
-                                450, // The position you want to scroll to
-                                duration: const Duration(
-                                    milliseconds:
-                                        3000), // Duration of the animation
-                                curve: Curves
-                                    .easeInOut, // The easing curve for the animation
-                              );
+                                sc.animateTo(
+                                  450, // The position you want to scroll to
+                                  duration: const Duration(
+                                      milliseconds:
+                                          3000), // Duration of the animation
+                                  curve: Curves
+                                      .easeInOut, // The easing curve for the animation
+                                );
                               },
                               child: Obx(() => Text('WHEN',
-                                  style: mainScreenController.whenStyle.value))),
+                                  style:
+                                      mainScreenController.whenStyle.value))),
                           GestureDetector(
-                            onTap: () {//
+                            onTap: () {
+                              //
                               mainScreenController.switchHeadingText('how');
-                               sc.animateTo(
+                              sc.animateTo(
                                 840, // The position you want to scroll to
                                 duration: const Duration(
                                     milliseconds:
@@ -101,7 +111,7 @@ class ScrollScreen extends StatelessWidget {
                             onTap: () {
                               mainScreenController.switchHeadingText('why');
                               //mainScreenController.scrollToElement(context);
-                               sc.animateTo(
+                              sc.animateTo(
                                 1230, // The position you want to scroll to
                                 duration: const Duration(
                                     milliseconds:
@@ -117,7 +127,8 @@ class ScrollScreen extends StatelessWidget {
                       ),
                     ),
                     sh20,
-                    WhatWid(goalController: goalController, scrollController: sc),
+                    WhatWid(
+                        goalController: goalController, scrollController: sc),
                     const SizedBox(
                       height: 20,
                     ),
@@ -129,34 +140,34 @@ class ScrollScreen extends StatelessWidget {
                   ],
                 );
               })
-    //       body: Center(
-    //         child: SingleChildScrollView(
-    //           controller: sc,
-    //           child: Column(
-    //             children: [
-    //               const Text('Part 1'),
-    //               MaterialButton(
-    //   onPressed: () {
-    //     sc.animateTo(
-    //       3000, // The position you want to scroll to
-    //       duration: const Duration(milliseconds: 500), // Duration of the animation
-    //       curve: Curves.easeInOut, // The easing curve for the animation
-    //     );
-    //   },
-    //   child: const Text('Scroll to Section'),
-    
-    // ),const SizedBox(height: 2000,), const Text('Part 2'),
-    //             ],
-    //           ),
-    //         ),
-    //       ),
+          //       body: Center(
+          //         child: SingleChildScrollView(
+          //           controller: sc,
+          //           child: Column(
+          //             children: [
+          //               const Text('Part 1'),
+          //               MaterialButton(
+          //   onPressed: () {
+          //     sc.animateTo(
+          //       3000, // The position you want to scroll to
+          //       duration: const Duration(milliseconds: 500), // Duration of the animation
+          //       curve: Curves.easeInOut, // The easing curve for the animation
+          //     );
+          //   },
+          //   child: const Text('Scroll to Section'),
+
+          // ),const SizedBox(height: 2000,), const Text('Part 2'),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
           ),
     );
   }
 }
 
 class WhyWid extends StatelessWidget {
-   WhyWid({
+  WhyWid({
     super.key,
     required this.whyDoThisController,
   });
@@ -193,17 +204,14 @@ class WhyWid extends StatelessWidget {
                     ),
                   ),
                 ),
-                  onSubmitted: (val){
-                    mapValue.addAll({
-                      'Why' : val
-                    });
-                    mainScreenController.addValuesToHiveFromMap(mapValue);
-                    listToAddToHive.add({'why' : val});
-                  
-                //    log(listToAddToHive.toString());
+                onSubmitted: (val) {
+                  mapValue.addAll({'Why': val});
+                  mainScreenController.addValuesToHiveFromMap(mapValue);
+                  listToAddToHive.add({'why': val});
+
+                  //    log(listToAddToHive.toString());
                   //  mainScreenController.addValuesToHive(listToAddToHive);
-                    
-                  },
+                },
               ),
             ),
             //CommonTextField(goalController: whyDoThisController,onSubmitFunction: (){}),
@@ -320,11 +328,9 @@ class HowWid extends StatelessWidget {
                     ),
                   ),
                 ),
-                onSubmitted: (val){
-                   mapValue.addAll({
-                      'How' : val
-                    });
-                  listToAddToHive.add({'how' : val});
+                onSubmitted: (val) {
+                  mapValue.addAll({'How': val});
+                  listToAddToHive.add({'how': val});
                 },
               ),
             ),
@@ -412,6 +418,8 @@ class WhenWid extends StatelessWidget {
   final TextEditingController deadlineController;
   final ScrollController _scrollController = ScrollController();
 
+  MainScreenController mainScreenController = Get.put(MainScreenController());
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -426,32 +434,30 @@ class WhenWid extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.white, width: 2)),
               width: MediaQuery.of(context).size.width,
-              child: TextField(
-                controller: deadlineController,
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: InputBorder.none,
-                  hintText: 'Enter here',
-                  hintStyle:
-                      TextStyle(color: Color.fromARGB(255, 168, 166, 166)),
-                  icon: Padding(
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      '🎯',
+              child: Obx(() => TextField(
+                    controller: mainScreenController.whenController.value,
+                    decoration: const InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: InputBorder.none,
+                      hintText: 'Enter here',
+                      hintStyle:
+                          TextStyle(color: Color.fromARGB(255, 168, 166, 166)),
+                      icon: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          '🎯',
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                onTap: () {
-                  //textFieldOnTapFuncion(context);
-                },
-                  onSubmitted: (val){
-                     mapValue.addAll({
-                      'When' : val
-                    });
-                    listToAddToHive.add({'when' : val});
-                  },
-              ),
+                    onTap: () {
+                      mainScreenController.textFieldTapFunction(context);
+                    },
+                    onSubmitted: (val) {
+                      mapValue.addAll({'When': val});
+                      listToAddToHive.add({'when': val});
+                    },
+                  )),
             ),
             const SizedBox(
               height: 20,
@@ -569,11 +575,9 @@ class WhatWid extends StatelessWidget {
                     ),
                   ),
                   onSubmitted: (val) {
-                  mainScreenController.handleSubmit(val);
-                   mapValue.addAll({
-                      'What' : val
-                    });
-                  listToAddToHive.add({'what' : val});
+                    mainScreenController.handleSubmit(val);
+                    mapValue.addAll({'What': val});
+                    listToAddToHive.add({'what': val});
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(

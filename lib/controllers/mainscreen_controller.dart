@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:intl/intl.dart';
 import 'package:voyager_app/models/hive_models/goal_model.dart';
 
 class MainScreenController extends GetxController {
@@ -17,6 +18,9 @@ class MainScreenController extends GetxController {
   String when = '';
   String how = '';
   String why = '';
+  
+   String formattedDate = '';
+  
   Box<GoalModel>? goalBox = Hive.box<GoalModel>('goalBox');
 
   //List<Map<String, String>> hiveList = [];
@@ -191,6 +195,25 @@ class MainScreenController extends GetxController {
     final k = goalBox!.getAt(0);
 
     log('h:$k');
+  }
+
+
+  textFieldTapFunction(BuildContext context)async{
+     DateTime? pickedDate = await showDatePicker(
+
+                      context: context,
+                       initialDate: DateTime.now(), //get today's date
+                      firstDate:DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                      lastDate: DateTime(2101), 
+                      
+                  ); 
+
+                  formattedDate= DateFormat.yMMMd().format(pickedDate!);
+                  Duration dateDifference = DateTime.now().difference(pickedDate); 
+                  
+                    whenController.value.text = formattedDate;
+                
+
   }
 
   // tcfun() {

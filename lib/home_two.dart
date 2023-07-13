@@ -1,7 +1,6 @@
 //import 'dart:html';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 
@@ -29,7 +28,7 @@ class _HomeTwoState extends State<HomeTwo> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      backgroundColor: Color(0xFFF0F8FF),
+      backgroundColor: const Color(0xFFF0F8FF),
       body: pages[pageIndex],
       bottomNavigationBar: buildMyNavBar(context),
     );
@@ -38,9 +37,9 @@ class _HomeTwoState extends State<HomeTwo> {
   Container buildMyNavBar(BuildContext context) {
     return Container(
       height: 90,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.transparent,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -56,12 +55,12 @@ class _HomeTwoState extends State<HomeTwo> {
                 });
               },
               icon: pageIndex == 0
-                  ?  ImageIcon(
+                  ?  const ImageIcon(
                 AssetImage("assets/images/Goals.png",),
                 color: Colors.blue,
                 size: 24,
               )
-                  : ImageIcon(
+                  : const ImageIcon(
                 AssetImage("assets/images/Goals.png"),
                 color: Colors.grey,
                 size: 24,
@@ -76,11 +75,11 @@ class _HomeTwoState extends State<HomeTwo> {
               },
               icon: pageIndex == 1
                   ?
-                    ImageIcon(
+                    const ImageIcon(
                 AssetImage("assets/images/Calendar.png",),
                 color: Colors.blue,
                   )
-                  : ImageIcon(
+                  : const ImageIcon(
                 AssetImage("assets/images/Calendar.png"),
                 color: Colors.grey,
                 size: 100,
@@ -94,12 +93,12 @@ class _HomeTwoState extends State<HomeTwo> {
                 });
               },
               icon: pageIndex == 2
-                  ?  ImageIcon(
+                  ?  const ImageIcon(
                 AssetImage("assets/images/Create.png"),
                 color: Colors.blue,
                 size: 70,
               )
-                  : ImageIcon(
+                  : const ImageIcon(
                 AssetImage("assets/images/Create.png"),
                 color: Colors.blue,
                 size: 70,
@@ -113,12 +112,12 @@ class _HomeTwoState extends State<HomeTwo> {
                 });
               },
               icon: pageIndex == 3
-                  ?  ImageIcon(
+                  ?  const ImageIcon(
                 AssetImage("assets/images/Reports.png"),
                 color: Colors.blue,
                 size: 24,
               )
-                  : ImageIcon(
+                  : const ImageIcon(
                 AssetImage("assets/images/Reports.png"),
                 color: Colors.grey,
                 size: 24,
@@ -133,12 +132,12 @@ class _HomeTwoState extends State<HomeTwo> {
                 });
               },
               icon: pageIndex == 4
-                  ?  ImageIcon(
+                  ?  const ImageIcon(
                 AssetImage("assets/images/More.png"),
                 color: Colors.blue,
                 size: 24,
               )
-                  : ImageIcon(
+                  : const ImageIcon(
                 AssetImage("assets/images/More.png"),
                 color: Colors.grey,
                 size: 24,
@@ -164,15 +163,15 @@ class Page1 extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
 
     return Container(
-      color: Color(0xFFF0F8FF),
+      color: const Color(0xFFF0F8FF),
       child: Container(
-        margin: EdgeInsets.only(left: 0),
+        margin: const EdgeInsets.only(left: 0),
         child: Column(
           children: [
             Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(top:screenSize.width/15,left: screenSize.width/20),
-              child: Text(
+              child: const Text(
                 //parser.emojify('I :heart: :coffee:'),
                 "My Goals",
                 style: TextStyle(
@@ -188,7 +187,7 @@ class Page1 extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: screenSize.width/20),
               width: screenSize.width/5+screenSize.width*0.6,
               height: 150,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(10))
               ),
@@ -196,7 +195,7 @@ class Page1 extends StatelessWidget {
                 children: [
                   Row(children: [
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0xFFDEE3F3),
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),),
 
@@ -205,13 +204,13 @@ class Page1 extends StatelessWidget {
                       child: Center(child: Image.asset("assets/images/home.png",height: 75,width: 75,)),
                     ),
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0XFF647CD6),
                         borderRadius: BorderRadius.only(topRight: Radius.circular(10)),),
                       width: screenSize.width*0.6,
                       height: 100,
 
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           "chk;gkaslhchlishlh"
                         ),
@@ -219,7 +218,7 @@ class Page1 extends StatelessWidget {
                     )
                   ],),
                   Row(
-                    children: [],
+                    children: const [],
                   )
                 ],
               ),
@@ -233,12 +232,12 @@ class Page1 extends StatelessWidget {
                   builder: (BuildContext context) {
                     return Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white
                         ),
-                        child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                        child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
                     );
                   },
                 );
@@ -261,16 +260,16 @@ class Page2 extends StatelessWidget {
     var heart  = Emoji('heart', '❤️');
 
     return Container(
-      color: Color(0xFFF0F8FF),
+      color: const Color(0xFFF0F8FF),
       child: Center(
         child: Column(
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 20,top: 20),
+              padding: const EdgeInsets.only(left: 20,top: 20),
               child: Text(
                 parser.emojify('I :heart: :coffee:'),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 25,
                   fontWeight: FontWeight.w500,
@@ -285,12 +284,12 @@ class Page2 extends StatelessWidget {
                   builder: (BuildContext context) {
                     return Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                             color: Colors.white
                         ),
-                        child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                        child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
                     );
                   },
                 );
@@ -309,14 +308,14 @@ class Page3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFF0F8FF),
+      color: const Color(0xFFF0F8FF),
       child: Center(
         child: Column(
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 20,top: 20),
-              child: Text(
+              padding: const EdgeInsets.only(left: 20,top: 20),
+              child: const Text(
                 "",
                 style: TextStyle(
                   color: Colors.black,
@@ -338,14 +337,14 @@ class Page4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFF0F8FF),
+      color: const Color(0xFFF0F8FF),
       child: Center(
         child: Column(
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 20,top: 20),
-              child: Text(
+              padding: const EdgeInsets.only(left: 20,top: 20),
+              child: const Text(
                 "Reports",
                 style: TextStyle(
                   color: Colors.black,
@@ -366,14 +365,14 @@ class Page5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFF0F8FF),
+      color: const Color(0xFFF0F8FF),
       child: Center(
         child: Column(
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 20,top: 20),
-              child: Text(
+              padding: const EdgeInsets.only(left: 20,top: 20),
+              child: const Text(
                 "More",
                 style: TextStyle(
                   color: Colors.black,

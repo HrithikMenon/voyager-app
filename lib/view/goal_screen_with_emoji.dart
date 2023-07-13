@@ -1,16 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:voyager_app/constants/constants.dart';
+import 'package:voyager_app/models/hive_models/goal_model.dart';
 
-class GoalScreenWithEmoji extends StatelessWidget {
-  GoalScreenWithEmoji({super.key});
+class GoalScreenWithEmoji extends StatefulWidget {
+  const GoalScreenWithEmoji({super.key});
 
+  @override
+  State<GoalScreenWithEmoji> createState() => _GoalScreenWithEmojiState();
+}
+
+class _GoalScreenWithEmojiState extends State<GoalScreenWithEmoji> {
   Box? goalBox;
+
   List<String> actionsList = [];
+
   TextEditingController actionController = TextEditingController();
+
+    Box<GoalModel>? bbox;
+
+  GoalModel? myData;
+
+  @override
+  void initState() {
+    super.initState();
+    gg();
+  }
+
+  Future<void> gg() async {
+    bbox = await Hive.openBox<GoalModel>('goalBox');
+    myData = bbox!.getAt(1);
+    setState(() {}); // Trigger a rebuild after retrieving the data
+  }
 
   @override
   Widget build(BuildContext context) {
+
+      if (myData == null) {
+      // Handle the case when data is not yet retrieved
+      return const Scaffold(
+        body: Center(
+          child: Text('No Goals Added Yet!'),
+        ),
+      );}
+      else{
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -46,24 +79,28 @@ class GoalScreenWithEmoji extends StatelessWidget {
                           Container(
                             height: 100,
                             width: 100,
-                            decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 201, 160, 246),
-                                borderRadius: BorderRadius.only(
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 201, 160, 246).withOpacity(0.5),
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                 )),
+                            child: Image.asset('assets/images/house.png'),
                           ),
                           Container(
                             height: 100,
                             width: 200,
-                            decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 139, 42, 243),
-                                borderRadius: BorderRadius.only(
+                            decoration:  BoxDecoration(
+                                color: const Color.fromARGB(255, 42, 96, 243).withOpacity(0.8),
+                                borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(10))),
-                            child: const Center(
-                              child: Text(
-                                //goalBox!.getAt(0)['what'].toString(),
-                                "Increase affiliate\nrevenue of Homesly",
-                                style: TextStyle(color: Colors.white),
+                            child:  Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  //goalBox!.getAt(0)['what'].toString(),
+                                  bbox!.get(0)!.what,
+                                  style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
                           ),
@@ -111,8 +148,8 @@ class GoalScreenWithEmoji extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(10))),
-                      child: const Center(
-                        child: Text("21 FEB 2020"),
+                      child:  Center(
+                        child: Text(bbox!.get(0)!.when, style: const TextStyle(fontWeight: FontWeight.bold),),
                       ),
                     ),
                   ],
@@ -150,7 +187,10 @@ class GoalScreenWithEmoji extends StatelessWidget {
                         child: TextFormField(
                           controller: actionController,
                           onFieldSubmitted: (val) {
-                            actionsList.add(val);
+                            setState(() {
+                              actionsList.add(val); 
+                              actionController.clear();
+                            });
                           },
                           decoration: const InputDecoration(
                             icon: Icon(Icons.add),
@@ -158,13 +198,19 @@ class GoalScreenWithEmoji extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: actionsList.length,
-                          itemBuilder: (builder, context) {
-                            return const Text('data');
-                          })
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: ListView.separated(
+                          separatorBuilder: (builder, index){
+                            return const SizedBox(height: 10,);
+                          },
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: actionsList.length,
+                            itemBuilder: (builder, index) {
+                              return Text(actionsList[index]);
+                            }),
+                      )
                     ],
                   ),
                 )
@@ -225,4 +271,4 @@ class GoalScreenWithEmoji extends StatelessWidget {
     // );
  
  // }
-
+}

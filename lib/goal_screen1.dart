@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:voyager_app/models/hive_models/goal_model.dart';
 
-class GoalScreen1 extends StatelessWidget {
+class GoalScreen1 extends StatefulWidget {
   const GoalScreen1({super.key});
 
+  @override
+  State<GoalScreen1> createState() => _GoalScreen1State();
+}
+
+class _GoalScreen1State extends State<GoalScreen1> {
+
+    Box<GoalModel>? bbox;
+  GoalModel? myData;
+
+  @override
+  void initState() {
+    super.initState();
+    gg();
+  }
+
+  Future<void> gg() async {
+    bbox = await Hive.openBox<GoalModel>('goalBox');
+    myData = bbox!.getAt(1);
+    setState(() {}); // Trigger a rebuild after retrieving the data
+  }
+ 
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +76,7 @@ class GoalScreen1 extends StatelessWidget {
                                   topRight: Radius.circular(10))),
                           child: const Center(
                             child:
-                                Text("Increase affiliate\nrevenue of Homesly"),
+                                Text('bbox!.get(0)!.what'),
                           ),
                         ),
                       ],
