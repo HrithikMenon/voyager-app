@@ -70,97 +70,98 @@ class _GoalScreenWithEmojiState extends State<GoalScreenWithEmoji> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 201, 160, 246)
-                                          .withOpacity(0.3),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                  )),
-                              child: Image.asset('assets/images/house.png'),
-                            ),
-                            Container(
-                              height: 100,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 42, 96, 243)
-                                      .withOpacity(0.8),
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(10))),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Text(
-                                    //goalBox!.getAt(0)['what'].toString(),
-                                    bbox!.get(0)!.what,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 180,
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(
-                                15,
-                              ),
-                            )),
-                        child: Center(
-                          child: Row(
+                 
+                  SizedBox(
+                    height: 150,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: bbox!.length,
+                        physics: const NeverScrollableScrollPhysics(), 
+                        shrinkWrap: true,
+                        itemBuilder: (builder, context){
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: Container(
-                                  height: 5,
-                                  width: 140,
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 2, 31, 80),
-                                    borderRadius: BorderRadius.only(),
-                                  ),
-                                  child: const LinearProgressIndicator(),
+                              Row(
+                                children: [
+                                  Container(
+                                height: 100,
+                                width: 100,
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 194, 208, 218),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                    )),
+                              ), Container(
+                                height: 100,
+                                width: 200,
+                                decoration: const BoxDecoration(
+                                    color: Colors.blueAccent,
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10))),
+                                child: Center(
+                                  child:
+                                      Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Text(bbox!.get(context)!.what, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                                      ),
+                                ),)
+                                ],
+                              ), 
+                                Row(
+                                      children: [
+                                            Container(
+                          height: 50,
+                          width: 180,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(
+                                  15,
                                 ),
-                              ),
+                              )),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Container(
+                                    height: 5,
+                                    width: 140,
+                                    decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 2, 31, 80),
+                                      borderRadius: BorderRadius.only(),
+                                    ),
+                                    child: const LinearProgressIndicator(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                                            ),
+                                            Container(
+                          height: 50,
+                          width: 120,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10))),
+                          child: Center(
+                            child: Text(bbox!.get(context)!.when),
+                          ),
+                                            ),
+                                      
                             ],
                           ),
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 120,
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(10))),
-                        child: Center(
-                          child: Text(
-                            bbox!.get(0)!.when,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ],
+                                ])),
+                        );
+                      }),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -293,6 +294,7 @@ class _GoalScreenWithEmojiState extends State<GoalScreenWithEmoji> {
 
   // }
 }
+
 
 class CircleCheckbox extends StatefulWidget {
   const CircleCheckbox({super.key});
