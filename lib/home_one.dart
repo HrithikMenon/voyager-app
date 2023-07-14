@@ -114,7 +114,7 @@ class _HomeOneState extends State<HomeOne> {
             setState(() {
               a = "Your plan";
             });
-          }
+          }  
           if (index ==3){
             setState(() {
               a = "Why do this";
